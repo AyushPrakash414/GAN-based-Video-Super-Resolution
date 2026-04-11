@@ -1,0 +1,14 @@
+# Core runtime
+numpy<2
+opencv-python-headless
+scipy
+PyYAML
+tqdm
+Pillow
+lmdb
+tb-nightly
+yapf
+
+# Install the vendored restoration libraries from this repository.
+-e ./models/gfpgan
+-e ./models/realesrgan
