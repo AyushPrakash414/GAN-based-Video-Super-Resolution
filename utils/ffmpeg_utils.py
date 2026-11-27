@@ -13,7 +13,19 @@ def resolve_ffmpeg_binary():
             return str(candidate)
         return env_binary
 
-    return shutil.which("ffmpeg") or "ffmpeg"
+    which_ffmpeg = shutil.which("ffmpeg")
+    if which_ffmpeg:
+        return which_ffmpeg
+
+    try:
+        import imageio_ffmpeg
+        exe = imageio_ffmpeg.get_ffmpeg_exe()
+        if exe and Path(exe).exists():
+            return exe
+    except Exception:
+        pass
+
+    return "ffmpeg"
 
 
 def ensure_ffmpeg_available():
